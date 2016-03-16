@@ -1,4 +1,4 @@
-package matrix;
+package lightning.vecmath;
 
 public class Mat2 {
 	public double[][] data;

@@ -1,4 +1,4 @@
-package matrix;
+package lightning.vecmath;
 
 import static java.lang.Math.*;
 
