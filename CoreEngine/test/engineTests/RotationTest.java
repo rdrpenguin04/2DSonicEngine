@@ -12,7 +12,7 @@ public class RotationTest {
 	private Vec2 supposedResult = new Vec2(-1,1);
 	@Test
 	public void testRotateVec2() {
-		assert(Rotation.rotateVec2(known, 90)==supposedResult);
+		assert(Rotation.rotateVec2(known, Math.toRadians(90))==supposedResult);
 	}
 
 }

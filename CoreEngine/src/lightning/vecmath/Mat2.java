@@ -12,6 +12,9 @@ public class Mat2 {
 	public void updateData() {
 		if(data!=prevData) {
 			prevData = data.clone();
+			if(vecData==null) vecData = new Vec2[]{
+				new Vec2(), new Vec2()
+			};
 			for(int i = 0; i < 2; i++) {
 				vecData[i].x = data[i][0];
 				vecData[i].y = data[i][1];
@@ -29,6 +32,7 @@ public class Mat2 {
 	}
 	
 	public Vec2 mul(Vec2 vector) {
+		updateData();
 		return new Vec2(vector).mul(vecData);
 	}
 }
