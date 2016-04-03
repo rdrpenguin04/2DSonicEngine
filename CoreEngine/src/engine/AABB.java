@@ -16,23 +16,10 @@ public class AABB {
 		this.points = points;
 	}
 	
-	public Vec2 isInterscecting(AABB other) {
-		Vec2 returned = new Vec2();
+	public boolean isIntersecting(AABB other) {
 		verifyOrder();
 		other.verifyOrder();
-		if(points[0].x > other.points[1].x) {
-			returned.x += points[0].x - other.points[1].x;
-		}
-		if(points[1].x < other.points[0].x) {
-			returned.x += points[1].x - other.points[0].x;
-		}
-		if(points[0].y > other.points[1].y) {
-			returned.y += points[0].y - other.points[1].y;
-		}
-		if(points[0].y > other.points[1].y) {
-			returned.y += points[1].y - other.points[0].y;
-		}
-		return returned;
+		return (points[0].x < other.points[1].x) && (points[1].x > other.points[0].x) && (points[0].y < other.points[1].y) && (points[1].y > other.points[0].y);
 	}
 	
 	public void verifyOrder() {
