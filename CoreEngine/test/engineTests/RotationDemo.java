@@ -21,6 +21,7 @@ public class RotationDemo {
 		glClearColor(0, 0, 0, 1);
 		glDisable(GL_DEPTH_TEST);
 		long initTime = System.nanoTime();
+		long lastTime = initTime;
 		Vec2[] vectors = new Vec2[] {
 			new Vec2(-1,-1), new Vec2( 1,-1), 
 			new Vec2( 1, 1), new Vec2(-1, 1)
@@ -44,7 +45,8 @@ public class RotationDemo {
 				glVertex2d(rotated[3].x,rotated[3].y);
 			}glEnd();
 			Display.update();
-			Thread.sleep(100);
+			System.out.printf("fps: %2d\n", 1000000000 / (curTime-lastTime));
+			lastTime = curTime;
 		}
 		Display.destroy();
 	}
