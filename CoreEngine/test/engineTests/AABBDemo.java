@@ -13,6 +13,8 @@ public class AABBDemo {
 	private static AABB a = new AABB(new Vec2[]{new Vec2(0,0),new Vec2(10,10)});
 	private static AABB b = new AABB(new Vec2[]{new Vec2(11,0),new Vec2(21,10)});
 	public static void main(String[] args) throws InterruptedException {
+		long fpsTerms = 0;
+		long fpsSum = 0;
 		try {
 			Display.setDisplayMode(new DisplayMode(500, 500));
 			Display.create();
@@ -49,71 +51,74 @@ public class AABBDemo {
 				glVertex2d(b.points[0].x,b.points[1].y);
 			}glEnd();
 			if(Keyboard.isKeyDown(Keyboard.KEY_LEFT)) {
-				b.points[0].x -= 10000.0 / (curTime-lastTime);
-				b.points[1].x -= 10000.0 / (curTime-lastTime);
+				b.points[0].x -= (curTime-lastTime) / 100000000.0;
+				b.points[1].x -= (curTime-lastTime) / 100000000.0;
 				if(a.isIntersecting(b)) {
-					b.points[0].x += 10000.0 / (curTime-lastTime);
-					b.points[1].x += 10000.0 / (curTime-lastTime);
+					b.points[0].x += (curTime-lastTime) / 100000000.0;
+					b.points[1].x += (curTime-lastTime) / 100000000.0;
 				}
 			}
 			if(Keyboard.isKeyDown(Keyboard.KEY_RIGHT)) {
-				b.points[0].x += 10000.0 / (curTime-lastTime);
-				b.points[1].x += 10000.0 / (curTime-lastTime);
+				b.points[0].x += (curTime-lastTime) / 100000000.0;
+				b.points[1].x += (curTime-lastTime) / 100000000.0;
 				if(a.isIntersecting(b)) {
-					b.points[0].x -= 10000.0 / (curTime-lastTime);
-					b.points[1].x -= 10000.0 / (curTime-lastTime);
+					b.points[0].x -= (curTime-lastTime) / 100000000.0;
+					b.points[1].x -= (curTime-lastTime) / 100000000.0;
 				}
 			}
 			if(Keyboard.isKeyDown(Keyboard.KEY_UP)) {
-				b.points[0].y += 10000.0 / (curTime-lastTime);
-				b.points[1].y += 10000.0 / (curTime-lastTime);
+				b.points[0].y += (curTime-lastTime) / 100000000.0;
+				b.points[1].y += (curTime-lastTime) / 100000000.0;
 				if(a.isIntersecting(b)) {
-					b.points[0].y -= 10000.0 / (curTime-lastTime);
-					b.points[1].y -= 10000.0 / (curTime-lastTime);
+					b.points[0].y -= (curTime-lastTime) / 100000000.0;
+					b.points[1].y -= (curTime-lastTime) / 100000000.0;
 				}
 			}
 			if(Keyboard.isKeyDown(Keyboard.KEY_DOWN)) {
-				b.points[0].y -= 10000.0 / (curTime-lastTime);
-				b.points[1].y -= 10000.0 / (curTime-lastTime);
+				b.points[0].y -= (curTime-lastTime) / 100000000.0;
+				b.points[1].y -= (curTime-lastTime) / 100000000.0;
 				if(a.isIntersecting(b)) {
-					b.points[0].y += 10000.0 / (curTime-lastTime);
-					b.points[1].y += 10000.0 / (curTime-lastTime);
+					b.points[0].y += (curTime-lastTime) / 100000000.0;
+					b.points[1].y += (curTime-lastTime) / 100000000.0;
 				}
 			}
 			if(Keyboard.isKeyDown(Keyboard.KEY_A)) {
-				a.points[0].x -= 10000.0 / (curTime-lastTime);
-				a.points[1].x -= 10000.0 / (curTime-lastTime);
+				a.points[0].x -= (curTime-lastTime) / 100000000.0;
+				a.points[1].x -= (curTime-lastTime) / 100000000.0;
 				if(a.isIntersecting(b)) {
-					a.points[0].x += 10000.0 / (curTime-lastTime);
-					a.points[1].x += 10000.0 / (curTime-lastTime);
+					a.points[0].x += (curTime-lastTime) / 100000000.0;
+					a.points[1].x += (curTime-lastTime) / 100000000.0;
 				}
 			}
 			if(Keyboard.isKeyDown(Keyboard.KEY_D)) {
-				a.points[0].x += 10000.0 / (curTime-lastTime);
-				a.points[1].x += 10000.0 / (curTime-lastTime);
+				a.points[0].x += (curTime-lastTime) / 100000000.0;
+				a.points[1].x += (curTime-lastTime) / 100000000.0;
 				if(a.isIntersecting(b)) {
-					a.points[0].x -= 10000.0 / (curTime-lastTime);
-					a.points[1].x -= 10000.0 / (curTime-lastTime);
+					a.points[0].x -= (curTime-lastTime) / 100000000.0;
+					a.points[1].x -= (curTime-lastTime) / 100000000.0;
 				}
 			}
 			if(Keyboard.isKeyDown(Keyboard.KEY_W)) {
-				a.points[0].y += 10000.0 / (curTime-lastTime);
-				a.points[1].y += 10000.0 / (curTime-lastTime);
+				a.points[0].y += (curTime-lastTime) / 100000000.0;
+				a.points[1].y += (curTime-lastTime) / 100000000.0;
 				if(a.isIntersecting(b)) {
-					a.points[0].y -= 10000.0 / (curTime-lastTime);
-					a.points[1].y -= 10000.0 / (curTime-lastTime);
+					a.points[0].y -= (curTime-lastTime) / 100000000.0;
+					a.points[1].y -= (curTime-lastTime) / 100000000.0;
 				}
 			}
 			if(Keyboard.isKeyDown(Keyboard.KEY_S)) {
-				a.points[0].y -= 10000.0 / (curTime-lastTime);
-				a.points[1].y -= 10000.0 / (curTime-lastTime);
+				a.points[0].y -= (curTime-lastTime) / 100000000.0;
+				a.points[1].y -= (curTime-lastTime) / 100000000.0;
 				if(a.isIntersecting(b)) {
-					a.points[0].y += 10000.0 / (curTime-lastTime);
-					a.points[1].y += 10000.0 / (curTime-lastTime);
+					a.points[0].y += (curTime-lastTime) / 100000000.0;
+					a.points[1].y += (curTime-lastTime) / 100000000.0;
 				}
 			}
 			Display.update();
+			fpsTerms++;
+			fpsSum += 1000000000 / (curTime-lastTime);
 			System.out.printf("fps: %2d\n", 1000000000 / (curTime-lastTime));
+			System.out.println("average fps: "+fpsSum/fpsTerms);
 			lastTime = curTime;
 		}
 		Display.destroy();
