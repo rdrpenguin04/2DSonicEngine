@@ -11,8 +11,11 @@ import org.lwjgl.opengl.DisplayMode;
 
 public class RotationDemo {
 	public static void main(String[] args) throws InterruptedException {
+		long fpsTerms = 0;
+		long fpsSum = 0;
 		try {
 			Display.setDisplayMode(new DisplayMode(500, 500));
+			Display.setTitle("Rotation Demo");
 			Display.create();
 		} catch (LWJGLException e) {
 			throw new RuntimeException(e.getMessage(), e.getCause());
@@ -45,7 +48,10 @@ public class RotationDemo {
 				glVertex2d(rotated[3].x,rotated[3].y);
 			}glEnd();
 			Display.update();
+			fpsTerms++;
+			fpsSum += 1000000000 / (curTime-lastTime);
 			System.out.printf("fps: %2d\n", 1000000000 / (curTime-lastTime));
+			System.out.println("average fps: "+fpsSum/fpsTerms);
 			lastTime = curTime;
 		}
 		Display.destroy();

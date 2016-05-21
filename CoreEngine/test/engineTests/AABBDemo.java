@@ -17,6 +17,7 @@ public class AABBDemo {
 		long fpsSum = 0;
 		try {
 			Display.setDisplayMode(new DisplayMode(500, 500));
+			Display.setTitle("Collision Demo: AABBs");
 			Display.create();
 		} catch (LWJGLException e) {
 			throw new RuntimeException(e.getMessage(), e.getCause());
