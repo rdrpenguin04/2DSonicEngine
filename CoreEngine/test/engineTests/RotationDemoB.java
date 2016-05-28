@@ -9,13 +9,13 @@ import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
-public class RotationDemo {
+public class RotationDemoB {
 	public static void main(String[] args) throws InterruptedException {
 		long fpsTerms = 0;
 		long fpsSum = 0;
 		try {
 			Display.setDisplayMode(new DisplayMode(500, 500));
-			Display.setTitle("Rotation Demo");
+			Display.setTitle("Rotation Demo B");
 			Display.create();
 		} catch (LWJGLException e) {
 			throw new RuntimeException(e.getMessage(), e.getCause());
@@ -35,7 +35,7 @@ public class RotationDemo {
 			glClear(GL_COLOR_BUFFER_BIT);
 			long curTime = System.nanoTime() - initTime;
 			for(int i = 0; i < 4; i++) {
-				rotated[i]=rotateVec2(rotated[i], Math.toRadians(curTime/25000000.0));
+				rotated[i]=rotateVec2B(rotated[i], curTime/25000000.0);
 			}
 			glBegin(GL_QUADS); {
 				glColor4f(1,1,0,1);

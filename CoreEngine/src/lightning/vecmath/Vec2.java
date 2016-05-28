@@ -46,8 +46,10 @@ public class Vec2 {
 	}
 	
 	Vec2 mul(Vec2[] vecData) {
-		x=vecData[0].x*x+vecData[0].y*y;
-		y=vecData[1].x*x+vecData[1].y*y;
+		double tmpx=vecData[0].x*x+vecData[0].y*y;
+		double tmpy=vecData[1].x*x+vecData[1].y*y;
+		x = tmpx;
+		y = tmpy;
 		return this;
 	}
 	
@@ -74,5 +76,15 @@ public class Vec2 {
 	public double magnitude() {
 		updateVars();
 		return magnitude;
+	}
+	
+	public String toString() {
+		return x + "," + y;
+	}
+	
+	public boolean equals(Object o) {
+		if (!(o instanceof Vec2)) return false;
+		Vec2 v = (Vec2) o;
+		return (v.x == x) && (v.y == y);
 	}
 }
