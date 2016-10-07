@@ -23,9 +23,9 @@ public class Rotation {
 	}
 	
 	private static double sinB(double in) {
-		while (in < 0)
-			in += 360;
 		in %= 360;
+		if (in < 0)
+			in += 360;
 		if(in > 180)
 			return -((4 * (in - 180) * (360 - in))/(40500 - (in - 180) * (360 - in)));
 		else

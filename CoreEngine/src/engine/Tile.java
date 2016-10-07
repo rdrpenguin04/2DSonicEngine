@@ -2,11 +2,15 @@ package engine;
 
 import static org.lwjgl.opengl.GL11.*;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
+import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
+
+import lightning.loading.TextureLoaderHub;
 
 public class Tile {
 	public int id;
@@ -18,11 +22,13 @@ public class Tile {
 	}
 	
 	public void render(double x, double y) {
+		Texture texture = null;
 		try {
-			TextureLoader.getTexture("png", new FileInputStream(Tile.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath())).bind();
-		} catch (IOException | URISyntaxException e) {
+			texture = TextureLoaderHub.getTexture("jpg", ".."+File.separator+"assets"+File.separator+"tilesets"+File.separator+tileset+File.separator+id+".jpg");
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		texture.bind();
 		glBegin(GL_QUADS);{
 			glTexCoord2f(0,0);
 			glVertex2d(x-0.5,y+0.5);

@@ -3,18 +3,23 @@ package engine;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.Path;
 
 public class LevelLoader {
-	private Scanner scanner;
+	private String name;
 	public LevelLoader(int levelID) {
 		this(".." + File.separator + "assets" + File.separator + "levels" + File.separator + levelID + ".lvl");
 	}
 	
 	LevelLoader(String fileName) {
 		try {
-			scanner = new Scanner(new FileInputStream(fileName));
+			new Scanner(new FileInputStream(fileName)).close();
 		} catch (FileNotFoundException e) {e.printStackTrace();System.exit(1);}
+		name = fileName;
 	}
 	
 	public LevelLoader() {
@@ -23,15 +28,25 @@ public class LevelLoader {
 	
 	public Level load() {
 		Level l = new Level();
-		l.sizeX = scanner.nextByte()*256+scanner.nextByte();
-		l.sizeY = scanner.nextByte()*256+scanner.nextByte();
-		l.spawnX = scanner.nextByte()*256+scanner.nextByte();
-		l.spawnY = scanner.nextByte()*256+scanner.nextByte();
-		l.tileset = scanner.nextByte()*256+scanner.nextByte();
+		Path path = Paths.get(name);
+		byte[] data = null;
+		try {
+			data = Files.readAllBytes(path);
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
+		l.sizeX = data[0]*256+data[1];
+		l.sizeY = data[2]*256+data[3];
+		l.spawnX = data[4]*256+data[5];
+		l.spawnY = data[6]*256+data[7];
+		l.tileset = data[8]*256+data[9];
 		l.level = new int[l.sizeX][l.sizeY];
+		int n = 0;
 		for(int i = 0; i < l.sizeX; i++) {
 			for(int j = 0; j < l.sizeY; j++) {
-				l.level[i][j] = scanner.nextByte();
+				l.level[i][j] = data[10+n];
+				n++;
 			}
 		}
 		return l;

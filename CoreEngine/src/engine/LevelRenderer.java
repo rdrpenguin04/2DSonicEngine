@@ -1,5 +1,7 @@
 package engine;
 
+import org.newdawn.slick.Color;
+
 public class LevelRenderer {
 	public Tile[][] levelTiles = new Tile[0][0];
 	public int[][] level = new int[0][0];
@@ -8,15 +10,16 @@ public class LevelRenderer {
 	
 	public void render(double x, double y) {
 		if(!upToDate) update();
+		Color.white.bind();
 		for(int i = 0; i < levelTiles.length; i++) {
 			for(int j = 0; j < levelTiles[0].length; j++) {
-				levelTiles[i][j].render(i + x, j + y);
+				levelTiles[levelTiles[0].length-j-1][i].render(i + x, j + y);
 			}
 		}
 	}
 	
 	public void update() {
-		if(level[0].length != levelTiles[0].length) {
+		if((level.length != 0) && (levelTiles.length != 0) && (level[0].length != levelTiles[0].length)) {
 			if(level.length == levelTiles.length){
 				for(int i = 0; i < level.length; i++) {
 					levelTiles[i] = new Tile[level[i].length];
