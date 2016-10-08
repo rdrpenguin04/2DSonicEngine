@@ -3,7 +3,7 @@ package engineTests;
 import engine.Level;
 import engine.LevelLoader;
 import engine.LevelRenderer;
-import startup.Util;
+import util.Util;
 
 import static org.lwjgl.opengl.GL11.*;
 
@@ -28,6 +28,6 @@ public class LevelRendering {
 			y -= 0.001;
 			Util.renderAndUpdate(60);
 		}
-		Display.destroy();
+		Util.destroy();
 	}
 }

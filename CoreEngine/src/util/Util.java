@@ -1,4 +1,4 @@
-package startup;
+package util;
 
 import static org.lwjgl.opengl.GL11.GL_DEPTH_TEST;
 import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
@@ -41,5 +41,13 @@ public class Util {
 		System.out.println("average fps: "+fpsSum/fpsTerms);
 		lastTime = curTime;
 		Display.sync(fps);
+	}
+	
+	public static double getAverageFPS() {
+		return fpsSum/fpsTerms;
+	}
+	
+	public static void destroy() {
+		Display.destroy();
 	}
 }
