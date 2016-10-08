@@ -43,6 +43,10 @@ public class Util {
 		Display.sync(fps);
 	}
 	
+	public static boolean isClosing() {
+		return Display.isCloseRequested();
+	}
+	
 	public static double getAverageFPS() {
 		return fpsSum/fpsTerms;
 	}

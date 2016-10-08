@@ -7,10 +7,6 @@ import util.Util;
 
 import static org.lwjgl.opengl.GL11.*;
 
-import org.lwjgl.LWJGLException;
-import org.lwjgl.opengl.Display;
-import org.lwjgl.opengl.DisplayMode;
-
 public class LevelRendering {
 	public static void main(String[] args) {
 		Util.setupGL(500, 500);
@@ -21,7 +17,7 @@ public class LevelRendering {
 		lr.upToDate = false;
 		double x = 0;
 		double y = 0;
-		while (!Display.isCloseRequested()) {
+		while (!Util.isClosing()) {
 			glClear(GL_COLOR_BUFFER_BIT);
 			lr.render(l.spawnX + x, l.spawnY + y);
 			x -= 0.005;
