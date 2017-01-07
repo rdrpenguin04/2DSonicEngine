@@ -27,7 +27,7 @@ public class Util {
 			throw new RuntimeException(e.getMessage(), e.getCause());
 		}
 		glOrtho(0, 20, 0, 20, -1, 1);
-		glClearColor(0, 0.70703125f, 1, 1);
+		glClearColor(0, 0xb6/256.0f, 1, 1);
 		glEnable(GL_TEXTURE_2D);
 		glDisable(GL_DEPTH_TEST);
 	}

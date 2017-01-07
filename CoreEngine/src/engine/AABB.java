@@ -16,10 +16,27 @@ public class AABB {
 		this.points = points;
 	}
 	
+	public double getIntersectionX(AABB other) {
+		double maximum = 0;
+		if(!isIntersecting(other)) return 0;
+		double tmp = other.points[1].x - points[0].x;
+		if(tmp > maximum) maximum = tmp;
+		tmp = points[1].x - other.points[0].x;
+		if(tmp > maximum) maximum = tmp;
+		return maximum;
+	}
+	
 	public boolean isIntersecting(AABB other) {
 		verifyOrder();
 		other.verifyOrder();
 		return (points[0].x < other.points[1].x) && (points[1].x > other.points[0].x) && (points[0].y < other.points[1].y) && (points[1].y > other.points[0].y);
+	}
+	
+	public AABB translate(double x, double y) {
+		return new AABB(new Vec2[]{
+				new Vec2(points[0].x + x, points[0].y + y),
+				new Vec2(points[1].x + x, points[1].y + y)
+				});
 	}
 	
 	public void verifyOrder() {

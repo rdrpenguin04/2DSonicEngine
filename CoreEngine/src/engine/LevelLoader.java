@@ -12,7 +12,7 @@ import java.nio.file.Path;
 public class LevelLoader {
 	private String name;
 	public LevelLoader(int levelID) {
-		this(".." + File.separator + "assets" + File.separator + "levels" + File.separator + levelID + ".lvl");
+		this(Paths.get("").toAbsolutePath().toString() + File.separator + "assets" + File.separator + "levels" + File.separator + levelID + ".lvl");
 	}
 	
 	LevelLoader(String fileName) {
