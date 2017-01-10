@@ -1,11 +1,13 @@
 package engine;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
 import org.newdawn.slick.opengl.Texture;
+import org.newdawn.slick.opengl.TextureLoader;
 
 import lightning.loading.TextureLoaderHub;
 
@@ -17,15 +19,17 @@ public class Character {
 	
 	public double rotation;
 	
-	public Character(String name, int tileset, int numAnimationFrames[], int numModes) throws IOException {
+	public Character(String name, int tileset, int numAnimationFrames[], int[] animationFrameDensity, int numModes) throws IOException {
 		leftAnimations = new Texture[numModes][];
 		rightAnimations = new Texture[numModes][];
+		this.numAnimationFrames = new int[numAnimationFrames.length];
 		for(int j = 0; j < numAnimationFrames.length; j++) {
-			leftAnimations[j] = rightAnimations[j] = new Texture[numAnimationFrames[j]];
-			this.numAnimationFrames = Arrays.copyOf(numAnimationFrames, numAnimationFrames.length);
-			for(int i = 0; i < numAnimationFrames[j]; i++) {
-				leftAnimations[j][i] = TextureLoaderHub.getTexture("PNG", Paths.get("").toAbsolutePath().toString()+File.separator+"assets"+File.separator+"tilesets"+File.separator+tileset+File.separator+name+"Left"+j+"_"+i);
-				rightAnimations[j][i] = TextureLoaderHub.getTexture("PNG", Paths.get("").toAbsolutePath().toString()+File.separator+"assets"+File.separator+"tilesets"+File.separator+tileset+File.separator+name+"Right"+j+"_"+i);
+			leftAnimations[j] = new Texture[numAnimationFrames[j]*animationFrameDensity[j]];
+			rightAnimations[j] = new Texture[numAnimationFrames[j]*animationFrameDensity[j]];
+			this.numAnimationFrames[j] = numAnimationFrames[j] * animationFrameDensity[j];
+			for(int i = 0; i < numAnimationFrames[j]*animationFrameDensity[j]; i++) {
+				leftAnimations[j][i] = TextureLoaderHub.getTexture("PNG", Paths.get("").toAbsolutePath().toString()+File.separator+"assets"+File.separator+"tilesets"+File.separator+tileset+File.separator+name+"Left"+j+"_"+i/animationFrameDensity[j]+".png");
+				rightAnimations[j][i] = TextureLoaderHub.getTexture("PNG", Paths.get("").toAbsolutePath().toString()+File.separator+"assets"+File.separator+"tilesets"+File.separator+tileset+File.separator+name+"Right"+j+"_"+i/animationFrameDensity[j]+".png");
 			}
 		}
 	}
